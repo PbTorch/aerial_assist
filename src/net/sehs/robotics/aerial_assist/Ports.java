@@ -13,5 +13,6 @@ public class Ports {
     public final static int drivetrain[] = {1, 2, 3, 4};
     public final static int launcher = 5;
     public final static int arms = 6;
+    public final static int gyro = 7;
 
 }

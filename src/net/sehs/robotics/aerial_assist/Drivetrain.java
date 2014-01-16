@@ -4,13 +4,14 @@
  */
 package net.sehs.robotics.aerial_assist;
 
+import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 
 /**
  *
- * @author Shullick
+ * @author Shullick and Renner
  */
 public class Drivetrain {
     
@@ -19,6 +20,7 @@ public class Drivetrain {
     Jaguar[] wheelJags = new Jaguar[4];
     public RobotDrive ourRobot;
     
+    public Gyro gyro = new Gyro(Ports.gyro);
 
     public Drivetrain(int frontLeft, int rearLeft, int frontRight, int rearRight) {
         
@@ -41,15 +43,15 @@ public class Drivetrain {
         if (joystick.getRawButton(5)) { // Kill switch
             if (joystick.getRawButton(3)) {
                 //myRobot.arcadeDrive(0, -.5);
-                ourRobot.mecanumDrive_Cartesian(joystick.getX(), joystick.getY(), -0.3, 0);
+                ourRobot.mecanumDrive_Cartesian(joystick.getX(), joystick.getY(), -0.3, gyro.getAngle());
             }
             else if (joystick.getRawButton(2)) {
                 //myRobot.arcadeDrive(0, .5);
-                ourRobot.mecanumDrive_Cartesian(joystick.getX(), joystick.getY(), 0.3, 0);
+                ourRobot.mecanumDrive_Cartesian(joystick.getX(), joystick.getY(), 0.3, gyro.getAngle());
             }
             else {
                 //myRobot.arcadeDrive(joystick.getY(), joystick.getX());
-                ourRobot.mecanumDrive_Cartesian(joystick.getX(), joystick.getY(), 0, 0);
+                ourRobot.mecanumDrive_Cartesian(joystick.getX(), joystick.getY(), 0, gyro.getAngle());
             }
         }
         else
