@@ -60,8 +60,6 @@ public class Targeting {
     
     //Calcuates the Energy required to launch the ball with a certaint velocity. 
     public double velocityToEnergy(double v){
-        //Math.pow not work?
-        //return ((2 * ((Math.pow(v, 2) * (1/2) *ballM ))) + (2 *ballM * g * launchHeight() ));
-        return 0.0;
+        return ((2 * (( v * v * (1/2) *ballM ))) + (2 *ballM * g * launchHeight() ));
     }
 }

@@ -31,6 +31,7 @@ package net.sehs.robotics.aerial_assist;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.camera.AxisCameraException;
+import edu.wpi.first.wpilibj.Ultrasonic;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -46,8 +47,14 @@ public class RobotMain extends IterativeRobot
     Joystick joystick; // Joystick
     //Joystickps3; // PS3 Controller
     Drivetrain drivetrain;
-    //RangeFinderSettings rangeFinger = new RangeFinderSettings(10);
     
+    //RangeFinderSettings rangeFinger = new RangeFinderSettings(10); 
+    
+    //Ultra sonic rangeFinder, uses ports set in 'Ports'
+    Ultrasonic rangeFinder = new Ultrasonic(Ports.rangeIn, Ports.rangeOut); //range finder
+    
+    //Targeting object, height of tower in inches, length of hoop side of arm in inches, length of back side of arm in inches, weight of the ball in pounds, launch angle in degrees.
+    Targeting targeting = new Targeting(16.6,22,20,2,45);
     /******************************* Variables ********************************/
 
  
@@ -77,6 +84,12 @@ public class RobotMain extends IterativeRobot
     public void teleopPeriodic()
     {
         drivetrain.joyDrive(joystick);
+        
+        //Assisted Aiming
+        if(joystick.getRawButton(Ports.autoAim)) //Auto Aims catapult.
+        {
+            System.out.println("Aiming Catapult.");
+        }
 
     }
        
