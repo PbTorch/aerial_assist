@@ -58,7 +58,6 @@ public class RobotMain extends IterativeRobot
         //ps3 = new Joystick(2);
         drivetrain = new Drivetrain(Ports.drivetrain[0], Ports.drivetrain[1],
                 Ports.drivetrain[2], Ports.drivetrain[3]);
-        drivetrain.gyro.reset();
     }
 
     /**************************** Autonomous function/loop ********************/
@@ -85,7 +84,6 @@ public class RobotMain extends IterativeRobot
     public void disabledInit()
     {
         System.out.println("Robot disabled.");
-        drivetrain.gyro.free();
     }
    
     public void disabledPeriodic()
